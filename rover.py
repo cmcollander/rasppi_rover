@@ -39,16 +39,15 @@ class Rover:
 	def Joy2Mot(self, nJoyX, nJoyY, moveAlso=True):
 		fpivYLimit = 32.0
 		if nJoyY>=0:
-			// Forward
-			nMotPremixL = (nJoyX>=0)?127.0:(127.0+nJoyX)
-			nMotPremixR = (nJoyX>=0)?(127.0-nJoyX):127.0
+			nMotPremixL = 127.0 if (nJoyX>=0) else (127.0+nJoyX)
+			nMotPremixR = (127.0-nJoyX) if (nJoyX>=0) else 127.0
 		else:
-			nMotPremixL = (nJoyX>=0)?(127.0-nJoyX):127.0
-			nMotPremixR = (nJoyX>=0)?127.0:(127.0+nJoyX)
+			nMotPremixL = (127.0-nJoyX) if (nJoyX>=0) else 127.0
+			nMotPremixR = 127.0 if (nJoyX>=0) else (127.0+nJoyX)
 		nMotPremixL *= nJoyY/128.0
 		nMotPremixR *= nJoyY/128.0;
 		nPivSpeed = nJoyX;
-		fPivScale = (abs(nJoyY)>fPivYLimit)?0.0:(1.0-abs(nJoyY)/fPivYLimit)
+		fPivScale = 0.0 if (abs(nJoyY)>fPivYLimit) else (1.0-abs(nJoyY)/fPivYLimit)
 		nMotMixL = (1.0-fPivScale)*nMotPremixL + fPivScale*nPivSpeed
 		nMotMixL = (1.0-fPivScale)*nMotPremixR + fPivScale*-1*nPivSpeed
 		left_wheel = int(nMotMixL*1.9921875)
