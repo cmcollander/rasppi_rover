@@ -16,8 +16,8 @@ while True:
 		x = ser.read()
 		y = ser.read()
 		if 'a'<x<'z' and 'a'<y<'z':
-			j1x = map(x,'a','z',100,0)
-			j1y = map(x,'a','z',0,100)
+			j1x = map(int(x),int('a'),int('z'),100,0)
+			j1x = map(int(x),int('a'),int('z'),0,100)
 			r.Joy2Mot(j1x,j1y)
 
 
