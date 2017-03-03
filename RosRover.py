@@ -1,6 +1,7 @@
 import roshelper
 import rospy
 from std_msgs.msg import Int16
+from std_msgs.msg import String
 from Rover import Rover
 
 n = roshelper.Node("RosRover", anonymous=False)
@@ -24,6 +25,11 @@ def listener(mot_right):
 	right = mot_right.data
 	r.move(left,right)
 	rospy.loginfo("MOVE: %d, %d"%(left,right))
+
+@n.subscriber("/RosRover_Stop", String)
+def listener(stop_val): # This value gets discarded
+	r.stop()
+	rospy.loginfo("STOP")
 
 @n.entry_point(frequency=1)
 def main():
