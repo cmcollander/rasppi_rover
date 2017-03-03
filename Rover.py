@@ -1,7 +1,6 @@
 from Adafruit_MotorHAT import Adafruit_MotorHAT, Adafruit_DCMotor
 
 class Rover:
-	
 	def __init__(self,address=0x60):
 		self.mh = Adafruit_MotorHAT(addr=address)
 		self.motors = []
@@ -18,10 +17,10 @@ class Rover:
 	def setWheel(self, mot, val):
 		if val<0:
 			self.motors[mot].run(Adafruit_MotorHAT.BACKWARD)
-			self.motors[mot].setSpeed(val)
+			self.motors[mot].setSpeed(-1*val)
 		else:
 			self.motors[mot].run(Adafruit_MotorHAT.FORWARD)
-			self.motors[mot].setSpeed(-1*val)
+			self.motors[mot].setSpeed(val)
 	
 	def releaseWheel(self, mot):
 		self.motors[mot].run(Adafruit_MotorHAT.RELEASE)
