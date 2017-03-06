@@ -1,4 +1,4 @@
-# rasppi_rover
+# rosrover
 
 This is a ROS-kinetic wrapper to control a custom built treaded rover of the following components.
 * Raspberry Pi 3
@@ -8,9 +8,9 @@ This is a ROS-kinetic wrapper to control a custom built treaded rover of the fol
 
 There is one custom message definition
 * rosrover/MotorControl
-* * int16 left   - Controls the left motors, give a value from -256 to 256 representing the PWM duty cycle of the wheel, with negative values indicating opposite direction.
-* * int16 right   - Controls the right motors, give a value from -256 to 256 representing the PWM duty cycle of the wheel, with negative values indicating opposite direction.
-* * bool stop - If this is anything other than 0, it will override 'left' and 'right' with 0 and release all current from the motors allowing external rotations.
+* -int16 left   - Controls the left motors, give a value from -256 to 256 representing the PWM duty cycle of the wheel, with negative values indicating opposite direction.
+* -int16 right   - Controls the right motors, give a value from -256 to 256 representing the PWM duty cycle of the wheel, with negative values indicating opposite direction.
+* -bool stop - If this is anything other than 0, it will override 'left' and 'right' with 0 and release all current from the motors allowing external rotations.
 
 The rover currently only has one subscriber.
 * rosrover/rosrover_motor  - Takes a rosrover/MotorControl message to control the motors
